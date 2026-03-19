@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prasad Gangurde | DevOps Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+
+    body {
+      background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+      color:white;
+      scroll-behavior:smooth;
+    }
+
+    header {
+      position:fixed;
+      width:100%;
+      top:0;
+      display:flex;
+      justify-content:space-between;
+      padding:15px 40px;
+      background:rgba(255,255,255,0.05);
+      backdrop-filter:blur(10px);
+      z-index:1000;
+    }
+
+    nav a {
+      margin-left:20px;
+      text-decoration:none;
+      color:white;
+      transition:.3s;
+    }
+
+    nav a:hover { color:#00e6ff; }
+
+    section { padding:100px 40px; }
+
+    .hero {
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+    }
+
+    .hero h1 { font-size:50px; }
+
+    .typing {
+      color:#00e6ff;
+      margin-top:10px;
+      height:30px;
+    }
+
+    .btn {
+      margin-top:20px;
+      padding:10px 20px;
+      border:none;
+      border-radius:20px;
+      background:#00e6ff;
+      cursor:pointer;
+      transition:.3s;
+    }
+
+    .btn:hover { transform:scale(1.1); }
+
+    .glass {
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(12px);
+      border-radius:15px;
+      padding:20px;
+      transition:.3s;
+    }
+
+    .glass:hover { transform:translateY(-10px); }
+
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .terminal {
+      background:black;
+      padding:20px;
+      border-radius:10px;
+      font-family:monospace;
+      color:#00ff90;
+    }
+
+    footer {
+      text-align:center;
+      padding:20px;
+      opacity:.6;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h2>Prasad Gangurde</h2>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Hi, I'm Prasad 👋</h1>
+  <div class="typing" id="typing"></div>
+  <button class="btn">Download Resume</button>
+</section>
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="glass">
+    Passionate DevOps Engineer specializing in CI/CD, cloud automation, and scalable infrastructure.
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="grid">
+    <div class="glass">Docker</div>
+    <div class="glass">Kubernetes</div>
+    <div class="glass">AWS</div>
+    <div class="glass">Terraform</div>
+    <div class="glass">Jenkins</div>
+    <div class="glass">Linux</div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="glass">CI/CD Pipeline Automation</div>
+    <div class="glass">Kubernetes Deployment</div>
+    <div class="glass">AWS Infrastructure using Terraform</div>
+  </div>
+</section>
+
+<section>
+  <h2>Live DevOps Terminal</h2>
+  <div class="terminal" id="terminal"></div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="glass">
+    Email: prasad@example.com<br>
+    GitHub: github.com/prasad
+  </div>
+</section>
+
+<footer>
+  © 2026 Prasad Gangurde
+</footer>
+
+<script>
+  const roles = ["DevOps Engineer","Cloud Specialist","Automation Expert"];
+  let i=0,j=0,current="",isDeleting=false;
+  const typing = document.getElementById("typing");
+
+  function type(){
+    current = roles[i];
+    if(isDeleting){
+      typing.textContent = current.substring(0,j--);
+      if(j<0){ isDeleting=false; i=(i+1)%roles.length; }
+    } else {
+      typing.textContent = current.substring(0,j++);
+      if(j>current.length){ isDeleting=true; }
+    }
+    setTimeout(type,100);
+  }
+  type();
+
+  const terminalText = [
+    "$ docker build -t app .",
+    "$ kubectl apply -f deployment.yaml",
+    "$ terraform apply",
+    "✔ Deployment Successful"
+  ];
+
+  let t = document.getElementById("terminal");
+  let index = 0;
+
+  function runTerminal(){
+    if(index < terminalText.length){
+      t.innerHTML += terminalText[index] + "<br>";
+      index++;
+      setTimeout(runTerminal,800);
+    }
+  }
+  runTerminal();
+</script>
+
+</body>
+</html>
